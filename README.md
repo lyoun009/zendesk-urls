@@ -2,7 +2,7 @@
 
 
 ## Setup
-##### Install necessary python3 packages
+#### Install necessary python3 packages
 
 Install keyring (https://pypi.org/project/keyring/)
 This is to store zendesk credentials so its NOT in plain text on the file. On macOS, it will use mac's Keychain to store the password. (Alternatively, you can hash the credentials instead too.)
@@ -15,7 +15,7 @@ Install requests library
 
 
 
-##### Set credentials using keyring
+#### Set credentials using keyring
 In zendesk.py, change these lines of code accordingly:
 
     keyring.set_password("zendesk", "[your_zendesk_email]", "[your_zendesk_password]")
@@ -23,14 +23,14 @@ In zendesk.py, change these lines of code accordingly:
     credentials = '[your_zendesk_email]', keyring.get_password("zendesk", "[your_zendesk_email]")
 
 
-##### Run the script once (to set up the credentials)
+#### Run the script once (to set up the credentials)
 
   
 
     python3 zendesk.py
 
 
-##### Delete the line in the script where you set your credentials
+#### Delete the line in the script where you set your credentials
 
     keyring.set_password("zendesk", "[your_zendesk_email]", "[your_zendesk_password]"
 
