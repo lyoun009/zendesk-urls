@@ -61,8 +61,11 @@ The script should print the tickets to the terminal. It will also print the tick
 
 ## Known Limitation(s)
 
-- only gets 100 results total. need to implement pagination -> DONE 
-    https://developer.zendesk.com/documentation/developer-tools/pagination/paginating-through-lists/
+- 2/2/2022: uses Zendesk Export API instead of Search API to get around 1000 limit
+    Tested and was able to get over 20,000 results from a query
 
-- EDIT: only gets 1000 results total. 
-      This appears to be the same as when searching zendesk in the browser which caps at 34 pages (ie. 34 * 30 = 1020 results).
+- 11/10/2021: only gets 1000 results total. 
+    This appears to be the same as when searching zendesk in the browser which caps at 34 pages (ie. 34 * 30 = 1020 results).
+
+- 7/9/2021: only gets 100 results total. need to implement pagination -> DONE 
+    https://developer.zendesk.com/documentation/developer-tools/pagination/paginating-through-lists/
