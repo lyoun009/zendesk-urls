@@ -21,7 +21,6 @@ params = {
 # url = 'https://zybooks.zendesk.com/api/v2/search.json?' + urlencode(params)
 url = 'https://zybooks.zendesk.com/api/v2/search/export.json?' + urlencode(params)
 
-# url = "https://zybooks.zendesk.com/api/v2/search/export.json?query=updated>=%sT00:00:00Z updated<=%sT23:59:59Z&page[size]=1000&filter[type]=ticket&page[after]="
 response = session.get(url)
 if response.status_code != 200:
     print('Status:', response.status_code, 'Problem with the request. Exiting.')
