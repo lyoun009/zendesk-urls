@@ -9,7 +9,6 @@ import csv
 # keyring.set_password("zendesk", "your_zendesk_email", "your_zendesk_password")
 
 my_query = input("Please enter your query search term: ")
-credentials = 'lindsey.young@zybooks.com', keyring.get_password("zendesk", "lindsey.young@zybooks.com")
 
 # credentials = '[your_zendesk_email]', keyring.get_password("zendesk", "[your_zendesk_email]")
 session = requests.Session()
