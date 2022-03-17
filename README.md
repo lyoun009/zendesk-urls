@@ -62,7 +62,7 @@ The script should print the tickets to the terminal. It will also print the tick
 - the original script
 - input: a Zendesk query
 - output: a .txt file of ticket URLs
-#### ``user-email.py``
+#### ``user-emails.py``
 - gets ticket URLs + requestor email
 - input: a Zendesk query
 - output: a .csv file of ticket URLs + requestor email
@@ -74,7 +74,7 @@ The script should print the tickets to the terminal. It will also print the tick
 
 ## Known Limitation(s)
 
-- **3/17/2022**: ``user-email.py`` script is slow compared to the original script
+- **3/17/2022**: ``user-emails.py`` script is slow compared to the original script
     This appears to be a limitation of the Zendesk API. The ticket URL is stored in a different place than the user info, so a second call to the Zendesk API is required, which slows the process. 
     The API returns results as a JSON, and since there are 2 API calls for one ticket, parsing through both JSONs is required, which also adds to the slowness.
 
