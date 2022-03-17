@@ -57,15 +57,32 @@ The script should print the tickets to the terminal. It will also print the tick
 
 **NOTE: the links.txt file will be overwritten every time the script is run.**
 
+## Variations
+#### ``zendesk.py``
+- the original script
+- input: a Zendesk query
+- output: a .txt file of ticket URLs
+#### ``user-email.py``
+- gets ticket URLs + requestor email
+- input: a Zendesk query
+- output: a .csv file of ticket URLs + requestor email
+#### ``subjects.py``
+- used for getting the subject (ie. cpp, python3, etc.) of a ticket
+- input: a .txt file of Zendesk URLs, separated by newlines
+- output: a .csv file of ticket URLs + subject
 
 
 ## Known Limitation(s)
 
-- 2/2/2022: uses Zendesk Export API instead of Search API to get around 1000 limit
+- **3/17/2022**: ``user-email.py`` script is slow compared to the original script
+    This appears to be a limitation of the Zendesk API. The ticket URL is stored in a different place than the user info, so a second call to the Zendesk API is required, which slows the process. 
+    The API returns results as a JSON, and since there are 2 API calls for one ticket, parsing through both JSONs is required, which also adds to the slowness.
+
+- **2/2/2022**: uses Zendesk Export API instead of Search API to get around 1000 limit
     Tested and was able to get over 20,000 results from a query
 
-- 11/10/2021: only gets 1000 results total. 
+- **11/10/2021**: only gets 1000 results total. 
     This appears to be the same as when searching zendesk in the browser which caps at 34 pages (ie. 34 * 30 = 1020 results).
 
-- 7/9/2021: only gets 100 results total. need to implement pagination -> DONE 
+- **7/9/2021**: only gets 100 results total. need to implement pagination -> DONE 
     https://developer.zendesk.com/documentation/developer-tools/pagination/paginating-through-lists/
