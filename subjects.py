@@ -10,10 +10,9 @@ import csv
 
 file_name = input("Please enter your input file name: ")
 
-credentials = 'lindsey.young@zybooks.com', keyring.get_password("zendesk", "lindsey.young@zybooks.com")
+# credentials = '[your_zendesk_email]', keyring.get_password("zendesk", "[your_zendesk_email]")
 session = requests.Session()
 session.auth = credentials
-
 
 
 columns = ["Ticket", "Subject"]
