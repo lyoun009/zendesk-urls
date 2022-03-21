@@ -21,6 +21,9 @@ In zendesk.py, change these lines of code accordingly:
     keyring.set_password("zendesk", "[your_zendesk_email]", "[your_zendesk_password]")
 
     credentials = '[your_zendesk_email]', keyring.get_password("zendesk", "[your_zendesk_email]")
+    
+NOTE: Do not include the square brackets. eg. ``keyring.set_password("zendesk", "john.smith@zybooks.edu", "Password123")``
+
 
 
 ### Run the script once (to set up the credentials)
@@ -86,3 +89,70 @@ The script should print the tickets to the terminal. It will also print the tick
 
 - **7/9/2021**: only gets 100 results total. need to implement pagination -> DONE 
     https://developer.zendesk.com/documentation/developer-tools/pagination/paginating-through-lists/
+
+## Token Authentication
+For users that don't have a Zendesk password, or for users that user 2FA, please follow these instructions.
+
+##### Generate a token on Zendesk Admin
+- Name the token something identifiable, such as "John's token", so we can idenify it in the future.
+- Don't press save or close since the token will be hidden permanently once you leave the page.
+
+##### Test the token in the terminal  
+Use this curl command to test your token. (Remember do NOT include the square brackets.)
+```
+curl https://zybooks.zendesk.com/api/v2/users.json \
+  -u [user email]/token:[token here]
+```
+
+
+Run the curl command. You should see a JSON file being outputted to the terminal. If not, check that you copied the token correctly.
+
+##### Convert the email+token credentials to base64. 
+You can do so using this command in the terminal.
+    
+    echo -n [user email]/token:[your token here] | base64
+    
+The echo command should return some long alpha-numeric string. **You will need this later**.
+
+##### Update the .py script to account for token authentication
+In VS code (or code editor of choice), modify the line of code that sets the password in Keyring:
+
+    # keyring.set_password("zendesk", "[your_zendesk_email]", "[your_zendesk_password]")
+
+Change it to:
+
+    keyring.set_password("zendesk", "token", "[that alpha-numeric base64 string from the previous step]")
+
+
+Under ``params``, add a line of code to call the token you set in Keyring:
+
+    my_headers={'Authorization': 'Basic '+keyring.get_password("zendesk", "token")}
+
+Change the ``response`` to call ``my_headers``. Do this by changing this line:
+
+    response = session.get(url)
+
+to this:
+
+    response = session.get(url, headers=my_headers)
+
+There should be **2 instances** of this line. One right before the ``if response.status_code != 200:`` block and the other in the ``while`` loop.
+
+You can also delete/comment out the lines of code:
+``# credentials = '[your_zendesk_email]', keyring.get_password("zendesk", "[your_zendesk_email]")`` and ``session.auth = credentials`` since we won't be using traditional credentials to authenticate anymore.
+
+##### Run the .py script
+Now, run the .py script once. This is just to set the token in Keyring.
+
+Then, delete the line where you wrote the credentials:
+
+        keyring.set_password("zendesk", "token", "[that alpha-numeric base64 string from the previous step]")
+
+
+
+
+
+
+
+
+
