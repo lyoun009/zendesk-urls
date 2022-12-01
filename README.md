@@ -64,7 +64,7 @@ The script should print the tickets to the terminal. It will also print the tick
 #### ``zendesk.py``
 - the original script
 - input: a Zendesk query
-- output: a .txt file of ticket URLs
+- output: a 'links.txt' file of ticket URLs
 #### ``user-emails.py``
 - gets ticket URLs + requestor email
 - input: a Zendesk query
@@ -76,7 +76,7 @@ The script should print the tickets to the terminal. It will also print the tick
 #### ``subject_line.py``
 - used for getting the subject line of a ticket
 - input: a Zendesk query
-- output: a 'links.txt' file of ticket subjects
+- output: a 'results.csv' file of ticket subjects
 
 
 ## Known Limitation(s) / Planned features
