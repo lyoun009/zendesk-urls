@@ -73,6 +73,10 @@ The script should print the tickets to the terminal. It will also print the tick
 - used for getting the subject (ie. cpp, python3, etc.) of a ticket
 - input: a .txt file of Zendesk URLs, separated by newlines
 - output: a .csv file of ticket URLs + subject
+#### ``subject_line.py``
+- used for getting the subject line of a ticket
+- input: a Zendesk query
+- output: a 'links.txt' file of ticket subjects
 
 
 ## Known Limitation(s) / Planned features
