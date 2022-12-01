@@ -75,7 +75,8 @@ The script should print the tickets to the terminal. It will also print the tick
 - output: a .csv file of ticket URLs + subject
 
 
-## Known Limitation(s)
+## Known Limitation(s) / Planned features
+- **12/1/2022**: TO DO: want to make a menu interface + combine the different scripts into one consolidated script (ie. run the single script -> give options get URLs, get subjects, get emails, or all of the above, etc. -> output based on user's selection.)
 
 - **3/17/2022**: ``user-emails.py`` script is slow compared to the original script
     This appears to be a limitation of the Zendesk API. The ticket URL is stored in a different place than the user info, so a second call to the Zendesk API is required, which slows the process. 
