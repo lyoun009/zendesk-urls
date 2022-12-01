@@ -9,7 +9,6 @@ import keyring
 my_query = input("Please enter your query search term: ")
 
 # credentials = '[your_zendesk_email]', keyring.get_password("zendesk", "[your_zendesk_email]")
-credentials = 'sarah.c.strawn@zybooks.com', keyring.get_password("zendesk", "sarah.c.strawn@zybooks.com")
 
 session = requests.Session()
 session.auth = credentials
@@ -29,7 +28,7 @@ if response.status_code != 200:
     exit()
 
 # clear contents of link.txt file
-file = open("links.txt","r+")
+file = open("results.csv","r+")
 file.truncate(0)
 file.close()
 
@@ -37,13 +36,15 @@ while url:
     response = session.get(url)
     data = response.json()
     for result in data['results']:
-        # res = (result['url']).replace(".json", "")
-        # res = res.replace("https://zybooks.zendesk.com/api/v2/tickets/", "https://zybooks.zendesk.com/agent/tickets/")
-        res = result['subject']
-        f = open("links.txt", "a")
+        res = (result['url']).replace(".json", "")
+        res = res.replace("https://zybooks.zendesk.com/api/v2/tickets/", "https://zybooks.zendesk.com/agent/tickets/")
+        subj = result['subject']
+        f = open("results.csv", "a")
         f.write(res)
+        f.write('\t')
+        f.write(subj)
         f.write("\n")
-        print(res)
+        print(res, subj)
         
     # url = data['next_page']
     if data['meta']['has_more'] == True:
